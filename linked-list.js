@@ -49,7 +49,7 @@ class LinkedList {
       //prevNode = currNode;
       currNode = currNode.next;
     }
-    console.log('LOOOK', currNode);
+    // console.log('LOOOK', currNode);
     currNode.next = new _Node(itemToInsert, currNode.next);
   }
 
@@ -90,9 +90,9 @@ class LinkedList {
     prevNode.next = new _Node(itemToInsert, currNode);
   }
 
-  insertAt(nthPosition, itemToInsert) {
-      
-  }
+  //   insertAt(nthPosition, itemToInsert) {
+
+  //   }
 
   find(item) {
     if (!this.head) {
@@ -132,8 +132,58 @@ class LinkedList {
   }
 }
 
+function displayList(list) {
+  let currNode = list.head;
+
+  while (currNode !== null) {
+    console.log(currNode.value);
+    currNode = currNode.next;
+  }
+}
+
+function size(list) {
+  let counter = 0;
+
+  let currNode = list.head;
+  
+  while (currNode !== null) {
+    counter++;
+    currNode = currNode.next;
+  }
+  console.log(`The size of the list is: ${counter}`);
+  return counter;
+}
+
+function isEmpty(list) {
+  let currNode = list.head;
+
+  if (!currNode) {
+    console.log('The list is empty');
+    return true;
+  } else {
+    console.log('The list is not empty');
+    return false;
+  }
+}
+
+// function size(lst){
+//     let counter = 0;
+//     let currNode = lst.head;
+//     if(!currNode){
+//         return counter;
+//     }
+//     else
+//         counter++;
+//     while (!(currNode.next == null)) {
+//         counter++;
+//         currNode = currNode.next;
+//     }
+//     return counter;
+// }
+
+let SLL = new LinkedList();
+
 function main() {
-  let SLL = new LinkedList();
   SLL.insertFirst('Apple');
   SLL.insertLast('Banana');
   SLL.insertLast('Strawberry');
@@ -144,8 +194,13 @@ function main() {
   SLL.insertAfter('Orange', 'Kiwi2');
   // SLL.remove('Apple');
   //   console.log(SLL.find('Strawberry'));
-  console.log(JSON.stringify(SLL, null, 2));
+  // console.log(JSON.stringify(SLL, null, 2));
   return SLL;
 }
 
 main();
+
+// displayList(SLL);
+
+size(SLL);
+isEmpty(SLL);
