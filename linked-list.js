@@ -31,18 +31,7 @@ class LinkedList {
     }
   }
 
-//   insertAfter(key, itemToInsert){
-//     let tempNode = this.head;
-//     while(tempNode !== null && tempNode.value !== key){
-//         tempNode = tempNode.next;
-//     } 
-
-//     console.log('LOOOOK', tempNode)
-// ;    if(tempNode !== null){
-//         tempNode.next = new _Node(itemToInsert, tempNode.next);
-//     }  
-// }
-
+  // method 1
   insertAfter(key, itemToInsert) {
     if (this.head === null) {
       return;
@@ -61,8 +50,21 @@ class LinkedList {
       currNode = currNode.next;
     }
     console.log('LOOOK', currNode);
-    currNode.next = new _Node(itemToInsert, currNode.next.next);
+    currNode.next = new _Node(itemToInsert, currNode.next);
   }
+
+  // method 2
+  //   insertAfter(key, itemToInsert){
+  //     let tempNode = this.head;
+  //     while(tempNode !== null && tempNode.value !== key){
+  //         tempNode = tempNode.next;
+  //     } 
+
+  //     console.log('LOOOOK', tempNode)
+  // ;    if(tempNode !== null){
+  //         tempNode.next = new _Node(itemToInsert, tempNode.next);
+  //     }  
+  // }
 
   insertBefore(key, itemToInsert) {
     if (this.head === null) {
@@ -86,6 +88,10 @@ class LinkedList {
       return;
     }
     prevNode.next = new _Node(itemToInsert, currNode);
+  }
+
+  insertAt(nthPosition, itemToInsert) {
+      
   }
 
   find(item) {
@@ -135,7 +141,7 @@ function main() {
   SLL.insertBefore('Apple', 'Orange');
   SLL.insertBefore('Strawberry', 'Blackberry');
   //SLL.insertAfter('Banana', 'Kiwi');
- SLL.insertAfter('Orange', 'Kiwi2');
+  SLL.insertAfter('Orange', 'Kiwi2');
   // SLL.remove('Apple');
   //   console.log(SLL.find('Strawberry'));
   console.log(JSON.stringify(SLL, null, 2));
