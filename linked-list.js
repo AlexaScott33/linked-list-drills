@@ -177,6 +177,21 @@ function size(list) {
   return counter;
 }
 
+// function size(lst){
+//     let counter = 0;
+//     let currNode = lst.head;
+//     if(!currNode){
+//         return counter;
+//     }
+//     else
+//         counter++;
+//     while (!(currNode.next == null)) {
+//         counter++;
+//         currNode = currNode.next;
+//     }
+//     return counter;
+// }
+
 function isEmpty(list) {
   let currNode = list.head;
 
@@ -205,20 +220,23 @@ function findPrev(list, item) {
   return currNode; 
 }
 
-// function size(lst){
-//     let counter = 0;
-//     let currNode = lst.head;
-//     if(!currNode){
-//         return counter;
-//     }
-//     else
-//         counter++;
-//     while (!(currNode.next == null)) {
-//         counter++;
-//         currNode = currNode.next;
-//     }
-//     return counter;
-// }
+function findLast(list) {
+  if (list.head === null) {
+    console.log('The list is empty');
+    return;
+  }
+  
+  let currNode = list.head;
+
+  while (currNode.next !== null) {
+    currNode = currNode.next;
+  }
+
+  console.log(`The last item in the list is ${currNode.value}`);
+  return currNode;
+}
+
+
 
 let SLL = new LinkedList();
 
@@ -246,6 +264,8 @@ displayList(SLL);
 
 // findPrev(SLL, 'Orange');
 
-SLL.insertAt(3, 'X');
+// SLL.insertAt(3, 'X');
 
-displayList(SLL);
+// displayList(SLL);
+
+findLast(SLL);
