@@ -302,6 +302,7 @@ function  reverseList(node) {
   return reverseRest;
 }
 
+// O(n) complexity
 function thirdFromEnd(list) {
   let thirdEnd = list.head;
   let end = thirdEnd.next.next.next;
@@ -313,6 +314,19 @@ function thirdFromEnd(list) {
 
   console.log(`The third element from the end is ${thirdEnd.value}`);
   return thirdEnd;
+}
+
+function middleOfList(list) {
+  let end = list.head;
+  let middle = list.head;
+
+  while ((end !== null) && (end.next !== null)) {
+    end = end.next.next;
+    middle = middle.next;
+  }
+  
+  console.log(`The middle of the list is ${middle.value}`);
+  return middle;
 }
 
 
@@ -350,4 +364,6 @@ main();
 
 //WhatDoesThisProgramDo(SLL);
 
-thirdFromEnd(SLL);
+//thirdFromEnd(SLL);
+
+middleOfList(SLL);
