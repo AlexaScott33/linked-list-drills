@@ -90,9 +90,32 @@ class LinkedList {
     prevNode.next = new _Node(itemToInsert, currNode);
   }
 
-  //   insertAt(nthPosition, itemToInsert) {
+  insertAt(nthPosition, itemToInsert) {
+    if (nthPosition < 0) {
+      throw new Error('Position error - no negative numbers');
+    }
+    if (nthPosition === 0) {
+      this.insertFirst(itemToInsert);
+    } else {
+      // Find the node which we want to insert after
 
-  //   }
+      const node = this._findNthElement(nthPosition - 1);
+      const newNode = new _Node(itemToInsert, null);
+      newNode.next = node.next; 
+      node.next = newNode;
+    }
+  }
+
+  _findNthElement(position) {
+    let node = this.head;
+
+    for (let i = 0; i < position; i++) {
+      console.log(`i: ${i}, position: ${position}, node: ${node.value}`);
+      node = node.next;
+    }
+    console.log('found the positions value!', node.value);
+    return node;
+  }
 
   find(item) {
     if (!this.head) {
@@ -166,6 +189,22 @@ function isEmpty(list) {
   }
 }
 
+function findPrev(list, item) {
+  // console.log('list.head ====', list.head.value);
+  //   if(item === list.head.value) {
+  //     console.log(`${item} is the first in the list`);
+  //     return;
+  //   }
+  let currNode = list.head;
+  // getting null for currNode.next.value when item === list.head.value
+  // console.log('!!!!!!!', currNode.next.value);
+  while ((currNode !== null) && (currNode.next.value !== item)) {
+    currNode = currNode.next;
+  }
+  console.log(`The previous node before ${item} is ${currNode.value}`);
+  return currNode; 
+}
+
 // function size(lst){
 //     let counter = 0;
 //     let currNode = lst.head;
@@ -200,7 +239,13 @@ function main() {
 
 main();
 
-// displayList(SLL);
+displayList(SLL);
 
-size(SLL);
-isEmpty(SLL);
+// size(SLL);
+// isEmpty(SLL);
+
+// findPrev(SLL, 'Orange');
+
+SLL.insertAt(3, 'X');
+
+displayList(SLL);
