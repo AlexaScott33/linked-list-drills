@@ -329,8 +329,57 @@ function middleOfList(list) {
   return middle;
 }
 
+/*
+Cycle in a list
+Write an algorithm to find whether a linked list has a cycle 
+(i.e. whether a node in the list has its next value pointing to an earlier 
+node in the list). For this exercise, create a Linked list called CycleList. 
+Be sure to insert nodes in the list so that it has a cycle. Then test your program 
+with your cycleList.
+*/
+
+// each time the method is called it flags
+// seen nodes with a new value
+function hasCycle (lst) {
+  // has a high probability of preventing false positives
+  var flag = Math.random();
+  var current = lst.head; //1 2 3 4
+  while(current !== null) {
+    if(current.value === flag) {
+      return true;
+    }
+    current.value = flag;
+    current = current.next;
+  }
+  return false;
+}
+
+function createCycle(list) {
+  list.head.next.next = list.head;
+  console.log('CREATED CYCLE');
+  return list;
+}
+
+function detectCycleInList(list) {
+  let fast = list.head;
+  let slow = list.head;
+
+  while ((slow !== null) && (fast !== null) && (fast.next !== null)) {
+    fast = fast.next.next;
+    slow = slow.next;
+
+    if (fast === slow) {
+      console.log('CYCLE DETECTED');
+      return;
+    }
+  }
+  console.log('NO CYCLE IN LIST');
+  return list;
+}
+
 
 let SLL = new LinkedList();
+let CycledLL = new LinkedList();
 
 function main() {
   SLL.insertFirst('Apple');
@@ -343,8 +392,13 @@ function main() {
   SLL.insertAfter('Orange', 'Kiwi2');
   // SLL.remove('Apple');
   //   console.log(SLL.find('Strawberry'));
-  // console.log(JSON.stringify(SLL, null, 2));
-  return SLL;
+  CycledLL.insertFirst('Cat');
+  CycledLL.insertLast('Bird');
+  CycledLL.insertLast('Dog');
+  CycledLL.insertLast('Monkey');
+
+  //console.log(JSON.stringify(CycledLL, null, 2));
+  return;
 }
 
 main();
@@ -366,4 +420,11 @@ main();
 
 //thirdFromEnd(SLL);
 
-middleOfList(SLL);
+//middleOfList(SLL);
+
+//displayList(CycledLL);
+
+createCycle(CycledLL);
+
+// detectCycleInList(SLL);
+detectCycleInList(CycledLL);
