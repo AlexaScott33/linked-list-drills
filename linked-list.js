@@ -225,7 +225,7 @@ function findLast(list) {
     console.log('The list is empty');
     return;
   }
-  
+
   let currNode = list.head;
 
   while (currNode.next !== null) {
@@ -234,6 +234,26 @@ function findLast(list) {
 
   console.log(`The last item in the list is ${currNode.value}`);
   return currNode;
+}
+
+//Answer: This program removes duplicates from a linked list. It will remove the 2nd and 
+//later occurances of the linked list - will not presenve the order of the list
+function WhatDoesThisProgramDo(lst){
+  let current = lst.head;
+  while(current !== null){
+    // console.log('hitting first while loop');
+    let newNode = current;
+    while (newNode.next !== null) {
+      // console.log('hitting second while loop');
+      if (newNode.next.value === current.value) {
+        newNode.next = newNode.next.next;
+      }
+      else{
+        newNode = newNode.next;
+      }
+    }
+    current = current.next;
+  }
 }
 
 
@@ -269,3 +289,5 @@ displayList(SLL);
 // displayList(SLL);
 
 findLast(SLL);
+
+WhatDoesThisProgramDo(SLL);
