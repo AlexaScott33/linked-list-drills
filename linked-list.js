@@ -302,6 +302,19 @@ function  reverseList(node) {
   return reverseRest;
 }
 
+function thirdFromEnd(list) {
+  let thirdEnd = list.head;
+  let end = thirdEnd.next.next.next;
+
+  while (end !== null) {
+    thirdEnd = thirdEnd.next;
+    end = end.next;
+  }
+
+  console.log(`The third element from the end is ${thirdEnd.value}`);
+  return thirdEnd;
+}
+
 
 let SLL = new LinkedList();
 
@@ -336,3 +349,5 @@ main();
 //findLast(SLL);
 
 //WhatDoesThisProgramDo(SLL);
+
+thirdFromEnd(SLL);
