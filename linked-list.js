@@ -256,6 +256,51 @@ function WhatDoesThisProgramDo(lst){
   }
 }
 
+//**************** NON RECURSIVE SOLUTION ***********
+// O(n)
+function reverse(list) {
+  // slowly create the list by adding to reversedPart
+  let reversedPart = null;
+  let current = list.head;
+   
+  while(current !== null) {
+    // assign the next node to savedNode for safe keeping
+    let savedNode = current.next;
+    // Reassigns current's pointer to the new list we are making
+    // reversedPart starts as null, but slowly grows as things are
+    // pushed onto the new list
+    current.next = reversedPart;
+    reversedPart = current;
+    // update the counter that is traveling through the array
+    current = savedNode;
+  }
+  // update the head so we have access to the linked list
+  list.head = reversedPart;
+  console.log(list.head);
+  //displayList(lst);
+  return list;
+}
+
+/************** A recursive version of the reverseList *********/
+//O(n)
+//send the head of the list - if you follow the next pointer of the head,
+//you get to see the whole list. You don't have to send the whole list
+function  reverseList(node) {
+  //what if 0 node in list
+  if (node == null) {
+    return null;
+  }
+  //what if 1 node in list
+  if (node.next == null) {
+    return node;
+  }
+  //reverse recursively and link second.next to first 
+  const secondElem = node.next;
+  node.next = null;
+  const reverseRest = reverseList(secondElem);
+  secondElem.next = node;
+  return reverseRest;
+}
 
 
 let SLL = new LinkedList();
@@ -277,7 +322,7 @@ function main() {
 
 main();
 
-displayList(SLL);
+//displayList(SLL);
 
 // size(SLL);
 // isEmpty(SLL);
@@ -288,6 +333,6 @@ displayList(SLL);
 
 // displayList(SLL);
 
-findLast(SLL);
+//findLast(SLL);
 
-WhatDoesThisProgramDo(SLL);
+//WhatDoesThisProgramDo(SLL);
